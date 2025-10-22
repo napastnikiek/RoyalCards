@@ -1,0 +1,516 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0a2463, #1e3c72);
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.screen {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+#home-screen {
+    display: block;
+}
+
+.mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.mode-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.mode-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.mode-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.mode-description {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.game-info {
+    display: flex;
+    gap: 15px;
+    font-size: 1.1rem;
+}
+
+.streak {
+    color: #ff9900;
+    font-weight: bold;
+}
+
+.timer {
+    color: #ff4444;
+    font-weight: bold;
+}
+
+.attempts {
+    color: #44ff44;
+    font-weight: bold;
+}
+
+.guess-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#guess-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+}
+
+#guess-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #4a9cff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #2d87ff;
+}
+
+button:disabled {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+}
+
+.autocomplete-list {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: calc(100% - 120px);
+    z-index: 10;
+    display: none;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.autocomplete-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.autocomplete-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.autocomplete-item img {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.guess-log {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.guess-row {
+    display: flex;
+    gap: 8px;
+}
+
+.guess-cell {
+    flex: 1;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: transform 0.5s, background 0.5s;
+    transform-style: preserve-3d;
+}
+
+.cell-name {
+    flex: 2;
+}
+
+.cell-icon {
+    font-size: 1.5rem;
+}
+
+.cell-correct {
+    background: #4CAF50;
+}
+
+.cell-close {
+    background: #FF9800;
+}
+
+.cell-wrong {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.game-result {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    display: none;
+}
+
+.result-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.result-card {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #4a9cff;
+}
+
+.result-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.result-stat {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.new-game-btn {
+    background: #4CAF50;
+    margin-top: 10px;
+}
+
+.new-game-btn:hover {
+    background: #45a049;
+}
+
+.home-btn {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.home-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.image-guess-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-image-large {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#card-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+#card-placeholder {
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.card-icon-image {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.card-icon-large-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0);
+    }
+    50% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0);
+    }
+}
+
+.flip {
+    animation: flip 0.5s ease-in-out;
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.reveal {
+    animation: reveal 0.5s ease-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.6s;
+}
+
+@media (max-width: 600px) {
+    .mode-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .guess-input-container {
+        flex-direction: column;
+    }
+
+    .autocomplete-list {
+        width: 100%;
+    }
+
+    .result-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .guess-cell {
+        font-size: 0.8rem;
+        padding: 5px;
+    }
+
+    #card-img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Dodaj do istniejącego CSS */
+.image-reveal-info {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.reveal-level {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Style dla trybu Image Guess */
+.cell-image-mode {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.image-reveal-info {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.reveal-level {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+    color: #4a9cff;
+}
+
+/* Style dla różnych poziomów trudności */
+.difficulty-info {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.easy-mode {
+    border-left: 4px solid #4CAF50;
+}
+
+.medium-mode {
+    border-left: 4px solid #FF9800;
+}
+
+.hard-mode {
+    border-left: 4px solid #f44336;
+}
+
+/* Efekty wizualne dla różnych trybów */
+.image-blurred {
+    filter: blur(15px) brightness(40%);
+}
+
+.image-pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.image-grayscale {
+    filter: grayscale(100%) brightness(20%) contrast(50%);
+}
+
+/* Style dla trybu Image Guess */
+.image-reveal-info {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.reveal-level {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+    color: #4a9cff;
+}
+
+/* Efekt pixelacji */
+.pixelated-image {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.cell-image-mode {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+

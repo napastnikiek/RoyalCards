@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Royale Card Guesser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Clash Royale Card Guesser</h1>
+        <p class="subtitle">Test your knowledge of Clash Royale cards!</p>
+    </header>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen">
+        <div class="mode-grid">
+            <div class="mode-card" data-mode="normal">
+                <div class="mode-icon">🎯</div>
+                <div class="mode-title">Normal Mode</div>
+                <div class="mode-description">Guess the card with unlimited attempts</div>
+            </div>
+            <div class="mode-card" data-mode="streak">
+                <div class="mode-icon">🔥</div>
+                <div class="mode-title">Streak Mode</div>
+                <div class="mode-description">Limited attempts, build your streak!</div>
+            </div>
+            <div class="mode-card" data-mode="time">
+                <div class="mode-icon">⏱️</div>
+                <div class="mode-title">Time Attack</div>
+                <div class="mode-description">Guess as many cards as you can in 60 seconds</div>
+            </div>
+            <div class="mode-card" data-mode="image">
+                <div class="mode-icon">🖼️</div>
+                <div class="mode-title">Image Guess</div>
+                <div class="mode-description">Guess based on card image only</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <button id="home-btn" class="home-btn">← Home</button>
+            <div class="game-info">
+                <div id="streak-display" class="streak">🔥 Streak: 0</div>
+                <div id="timer-display" class="timer">⏱️ Time: 60s</div>
+                <div id="attempts-display" class="attempts">Attempts: 0/∞</div>
+            </div>
+        </div>
+
+        <div id="image-guess-container" class="image-guess-container">
+            <div class="image-reveal-info">
+                Image clarity:
+                <span id="reveal-level" class="reveal-level">0%</span>
+            </div>
+            <div id="card-image-large" class="card-image-large">
+                <img id="card-img" src="" alt="Guess this card" style="display: none;">
+                <div id="card-placeholder">?</div>
+            </div>
+        </div>
+
+        <div class="guess-input-container">
+            <input type="text" id="guess-input" placeholder="Enter card name...">
+            <div id="autocomplete-list" class="autocomplete-list"></div>
+            <button id="guess-btn">Guess</button>
+        </div>
+
+        <div id="guess-log" class="guess-log"></div>
+
+        <div id="game-result" class="game-result">
+            <div id="result-title" class="result-title"></div>
+            <div id="result-card" class="result-card"></div>
+            <div class="result-stats">
+                <div id="result-attempts" class="result-stat"></div>
+                <div id="result-time" class="result-stat"></div>
+            </div>
+            <button id="new-game-btn" class="new-game-btn">New Game</button>
+        </div>
+    </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
